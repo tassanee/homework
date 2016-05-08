@@ -71,7 +71,7 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="https://github.com/MrDynamic/web-homework">Source Code</a></li>        
+        <li><a href="https://github.com/tassanee/homework">Source Code</a></li>        
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -121,13 +121,14 @@ puts s[5]
                   <h3 id="lab2">Lab 2</h3>
                   <div>
                           <pre class="brush: ruby;">
-puts "Hello I'm Polawat"
+puts "Hi,My name is Tassanee"
 print "What is your name?"
 name = gets.chomp
-puts "Hi {#name}"
-print "K.#{name} How old are you?"
+puts "Hello #{name}"
+print "K. #{name} How old are you?"
 ages = gets.chomp
-puts "Nice too miss you"
+print "K. #{name} Where do you live?"
+print "K. #{name} what is your job?"
                           </pre>
                   </div>
                   <h3 id="lab3">Lab 3</h3>
@@ -135,24 +136,20 @@ puts "Nice too miss you"
                           <pre class="brush: ruby;">
 # 3.1
 arr = %w(a b c d e f)
-puts "Retrive the 3 element (counting from1)"
-puts "answer: #{arr[1..3]}" 
+puts arr[1..3]
 puts
 
 # 3.2
-puts "Retrieve the first two elements"
-puts "answer: #{arr[0,2]}"
+puts arr[0,2]
 puts
 
 # 3.3
-puts "Retrieve the last elements"
-puts "answer: #{arr[-1]}"
+puts arr[-1]
 puts
 
 # 3.4
 arr.delete('c')
-puts "Delete the duplicate 'c' "
-puts "anwser: #{arr}"
+puts arr
 puts 
 
 # 3.5
@@ -161,9 +158,9 @@ puts
 
 # 3.6
 arr.push('g')
-puts "Add the character 'g' to the end of the array"
-puts "answer: #{arr}"
+puts arr
 puts
+
                           </pre>
                   </div>
                   <h3 id="lab4">Lab 4</h3>
@@ -171,8 +168,7 @@ puts
                           <pre class="brush: ruby;">
 # 4.1
 number = (1..100).to_a
-puts "Sub the number from 1 to 100"
-puts "answer: #{number.reduce{|sum,n| sum+n}}"
+puts number.reduce{|sum,n| sum+n}
 puts
 
 # 4.2
@@ -226,7 +222,6 @@ puts arr.select{|n| n[:name]== "User2" }
 
 # 7.2
 arr.each(){|n| puts n[:email]}
-
                           </pre>
                   </div>
                   <h3 id="lab8">Lab 8</h3>
@@ -244,26 +239,26 @@ puts divide(10,2)
                   <div>
                           <pre class="brush: ruby;">
 # 9.1
-def add(val1,val2)
-    "#{val1}+#{val2}=#{val1+val2}" 
+def addNumber(num1,num2)
+    "#{num1}+#{num2}=#{num1+num2}" 
 end
-puts add(10,2)
+puts addNumber(99,1)
 
 # 9.2
-def multiply(val1,val2,val3)
-    "#{val1} * #{val2} * #{val3} =#{val1*val2*val3}" 
+def multiplyNumber(num1,num2,num3)
+    "#{num1} * #{num2} * #{num3} =#{num1*num2*num3}" 
 end
-puts multiply(10,10,10)
+puts multiplyNumber(9,9,9)
 
 # 9.3
-def tempVal(val)
-    "The temperature outside is '#{val}' " 
+def temperature(num)
+    "The temperature outside is '#{num}' F " 
 end
-puts tempVal(100)
+puts temperature(35)
 
 # 9.4
-def tempDesc(val)
-    puts case val
+def temperature_detail(num)
+    puts case num
     when 1..15
       "It's cool"
     when 15..30
@@ -272,7 +267,8 @@ def tempDesc(val)
       "It's hot"
     end
 end
-puts tempDesc(20)
+temperature_detail(35)
+temperature_detail(10)
 
                           </pre>
                   </div>
@@ -293,26 +289,17 @@ def operands(val1,val2,oper)
     elsif oper == "^"
         result = val1 ** val2
     end
-    "Result =#{result}"
+    "Result #{val1} #{oper} #{val2} =#{result}"
 end
-puts operands(10,2,"*")
+puts operands(10,10,"*")
+puts operands(10,10,"/")
+puts operands(10,10,"^")
+puts operands(10,10,"-")
+puts operands(10,10,"+")
 
                           </pre>
                   </div>
                   <h3 id="lab11">Lab 11</h3>
-                  <div>
-                          <pre class="brush: ruby;">
-# No.11
-def between_value(val1,val2)
-    val1 += 1
-    (val1...val2).each {|num| puts num/1.0} 
-end
-
-between_value(0,10)
-
-                          </pre>
-                  </div>
-                  <h3 id="lab12">Lab 12</h3>
                   <div>
                           <pre class="brush: ruby;">
 # 12
@@ -327,11 +314,12 @@ def sortHash(sort)
     end
 end
 
-sortHash("ASC")
+sortHash('ASC')
+sortHash('DESC')
 
                           </pre>
                   </div>
-                  <h3 id="lab13">Lab 13</h3>
+                  <h3 id="lab12">Lab 12</h3>
                   <div>
                           <pre class="brush: ruby;">
 # No. 13
@@ -377,6 +365,28 @@ user1 = User.new('Polawat','mail@mail.com',20)
 puts user1.celebrate
 puts user1.celebrate
 
+                          </pre>
+                  </div>
+                  <h3 id="lab13">Lab 13</h3>
+                  <div>
+                          <pre class="brush: ruby;">
+# No. 14
+class User
+   attr_accessor :name, :email, :age
+    def initialize(name,email,age)
+        @name = name 
+        @email=email
+        @age=age
+    end
+    def celebrate
+        @age += 1
+        "Happy Birthday K.#{@name} ,Age:#{@age}"
+    end
+end
+
+user1 = User.new('Polawat','mail@mail.com',20)
+puts user1.celebrate
+puts user1.celebrate
 
                           </pre>
                   </div>
