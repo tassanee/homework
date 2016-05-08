@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Codeigniter Tutorial</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <style type="text/css">
+      .navbar-custom {
+    background-color:#229922;
+    color:#ffffff;
+    border-radius:0;
+}
+
+.navbar-custom .navbar-nav > li > a {
+    color:#fff;
+}
+.navbar-custom .navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus {
+    color: #ffffff;
+    background-color:transparent;
+}
+.navbar-custom .navbar-brand {
+    color:#eeeeee;
+}
+
+  /*.syntaxhighlighter {*/
+  /*  width: 500px;*/
+  /*  height: 500px;*/
+  /*  overflow-y: auto !important;*/
+  /*  overflow-x: auto !important;*/
+    
+  /*}*/
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top" >
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Codeigniter Tutorial</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="#" onclick="goToByScroll('htaccess');return false;">.htaccess</a>
+        </li>
+        <li>
+          <a href="#" onclick="goToByScroll('autoload');return false;">autoload.php</a>
+        </li>
+        <li>
+          <a href="#" onclick="goToByScroll('config');return false;">config.php</a>
+        </li>
+        <li>
+          <a href="#" onclick="goToByScroll('database');return false;">database.php</a>
+        </li>
+        <li>
+          <a href="#" onclick="goToByScroll('routes');return false;">routes.php</a>
+        </li>
+        <li>
+          <a href="#" onclick="goToByScroll('customer');return false;" >Customer.php </a>
+        </li>
+        <li>
+          <a href="#" onclick="goToByScroll('m_customer');return false;" >M_Customer.php </a>
+        </li>
+        <li>
+          <a href="#" onclick="goToByScroll('layout');return false;">layout.php</a>
+        </li>
+        <li>
+          <a href="#" onclick="goToByScroll('view_customer');return false;">view_customer.php</a>
+        </li>
+         <li>
+          <a href="#" onclick="goToByScroll('create_customer');return false;">create_customer.php</a>
+        </li>
+       
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-8">
+            <div class="adv-table">
+            <div class="space15"></div>       
+		</div>
+    </div>
+</div>
+<div class="row">
+	<div class="col-md-offset-3 col-md-8">
+		<div class="adv-table">
+		<div class="space15"></div>
+			
+		</div>
+	</div>
+</div>
+   <div class="row">
+     <div class="col-md-10">
+           <div class="adv-table">
+                  <div class="space15" style="margin:100px !important;"></div>
+                  <h3 id="htaccess">.htaccess</h3>
+                  <h5>tutorial/.htaccess</h5>
+                  <div>
+                    <pre class="brush:xml;">
+                      RewriteEngine On
+                      RewriteCond %{REQUEST_FILENAME} !-f
+                      RewriteCond %{REQUEST_FILENAME} !-d
+                      RewriteRule ^(.*)$ index.php/$1 [L]
+                    </pre>
+                  </div>
+                  <h3 id="create_db">Create Database</h3>
+                  <h5>tutorial_db</h5>
+                  <div>
+                    <pre class="brush:sql;">
+                     -- Create database tutorial_db  
+                     CREATE DATABASE tutorial_db charset utf8 collate utf8_general_ci;
+                     -- End create database
+                    </pre>
+                  </div>
+                  <h3 id="create_db">Create Table</h3>
+                  <h5>tbl_customer</h5>
+                  <div>
+                    <pre class="brush:sql;">
+                      --
+                      -- Create table
+                     CREATE TABLE `tbl_customer` (
+                      `custId` int(11) PRIMARY KEY  NOT NULL AUTO_INCREMENT,
+                      `firstname` varchar(50) NOT NULL,
+                      `lastname` varchar(50) NOT NULL,
+                      `email` varchar(50) DEFAULT NULL,
+                      `c_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+                    );
+                    --
+                    --
+                    </pre>
+                  </div>
+                  <h3 id="autoload">autoload.php</h3>
+                  <h5>tutorial/config/autoload.php</h5>
+                  <div>
+                    <pre class="brush:php;">
+$autoload['libraries'] = array('database');
+
+/*
+| -------------------------------------------------------------------
+|  Auto-load Drivers
+| -------------------------------------------------------------------
+| These classes are located in system/libraries/ or in your
+| application/libraries/ directory, but are also placed inside their
+| own subdirectory and they extend the CI_Driver_Library class. They
+| offer multiple interchangeable driver options.
+|
+| Prototype:
+|
+|	$autoload['drivers'] = array('cache');
+*/
+$autoload['drivers'] = array();
+
+/*
+| -------------------------------------------------------------------
+|  Auto-load Helper Files
+| -------------------------------------------------------------------
+| Prototype:
+|
+|	$autoload['helper'] = array('url', 'file');
+*/
+$autoload['helper'] = array('form','url');
+/*
+| -------------------------------------------------------------------
+|  Auto-load Config files
+| -------------------------------------------------------------------
+
+                    </pre>
+                  </div>
+                  <h3 id="config">config.php</h3>
+                  <h5>tutorial/config/config.php</h5>
+                  <div>
+                    <pre class="brush:php;">
+| If you need to allow multiple domains, remember that this file is still
+| a PHP script and you can easily do that on your own.
+|
+*/
+$config['base_url'] = 'http://127.0.0.1:8080/tutorial';
+
+/*
+|--------------------------------------------------------------------------
+| Index File
+|--------------------------------------------------------------------------
+|
+| Typically this will be your index.php file, unless you've renamed it to
+| something else. If you are using mod_rewrite to remove the page set this
+| variable so that it is blank.
+|
+*/
+$config['index_page'] = '';
+
+/*
+                    </pre>
+                  </div>
+                  <h3 id="database">database.php</h3>
+                  <h5>tutorial/config/database.php</h5>
+                  <div>
+                    <pre class="brush:php;">
+$db['default'] = array(
+  'dsn'	=> '',
+  'hostname' => 'localhost',
+  'username' => 'root',
+  'password' => 'root',
+  'database' => 'tutorial_db',
+  'dbdriver' => 'mysqli',
+  'dbprefix' => '',
+  'pconnect' => FALSE,
+  'db_debug' => (ENVIRONMENT !== 'production'),
+  'cache_on' => FALSE,
+  'cachedir' => '',
+  'char_set' => 'utf8',
+  'dbcollat' => 'utf8_general_ci',
+  'swap_pre' => '',
+  'encrypt' => FALSE,
+  'compress' => FALSE,
+  'stricton' => FALSE,
+  'failover' => array(),
+  'save_queries' => TRUE
+);
+                    </pre>
+                  </div>
+                  <h3 id="routes">routes.php</h3>
+                  <h5>tutorial/config/routes.php</h5>
+                  <div>
+                    <pre class="brush:php;">
+|Examples:	my-controller/index	-> my_controller/index
+|my-controller/my-method	-> my_controller/my_method
+*/
+$route['default_controller'] = 'customer';
+$route['404_override'] = '';
+$route['translate_uri_dashes'] = FALSE;
+                    </pre>
+                  </div>
+                  <h3 id="customer">Customer.php</h3>
+                  <h5>tutorial/application/controllers/Customer.php</h5>
+                  <div>
+                    <pre class="brush:php;">
+&lt;?php
+	Class Customer extends CI_Controller{
+
+	public function __construct()
+    {
+        parent::__construct();
+        $this->load->model(array('M_Customer'=>'cust'));
+    }
+
+
+	public function index(){
+		$listData["list_data"] = $this->cust->getAllData();
+		$html['yeild'] = $this->load->view('view_customer',$listData,true);
+		$this->load->view('layout.php',$html);
+
+	}
+
+
+	public function create(){
+		$html['yeild'] = $this->load->view('create_customer','',true);
+		$this->load->view('layout.php',$html);
+	}
+
+	public function save(){
+		unset($this->input->post()['action']);
+		$this->cust->insert($this->input->post());
+		redirect('customer');
+	}
+
+	public function edit(){
+		$customerId = $this->uri->segment(3);
+		if($customerId){
+			$data = $this->cust->getDataByCriteria(array('custId'=>$customerId));
+			$editData['editData'] = $data[0];
+			$editData['action'] = 'edit';
+			$html['yeild'] = $this->load->view('create_customer',$editData,true);
+			$this->load->view('layout.php',$html);
+			
+		}
+	}
+
+	public function update(){
+
+		$customerId = $this->uri->segment(3);
+		$this->cust->update($this->input->post(),array('custId'=>$customerId));
+		redirect('customer');
+	}
+
+	public function delete(){
+		$this->cust->delete(array('custId'=>$this->uri->segment(3)));
+		redirect('customer');
+	}
+
+	
+
+
+}
+	
+</pre>
+        <h3 id="m_customer">M_Customer.php</h3>
+        <h5>tutorial/application/models/M_Customer.php</h5>
+        <div>
+        <pre class="brush:php;">
+&lt;?php
+class M_Customer extends CI_Model{
+
+	private $table = 'tbl_customer';
+
+	public function __construct()
+    {
+        parent::__construct();
+    }
+
+	public function insert($data){
+        $this->db->insert($this->table,$data);
+    }
+
+    public function getAllData(){
+        $query =  $this->db->get($this->table);
+        return $query->result();
+    }
+
+    
+	public function getDataByCriteria($criteria){
+    	$query = $this->db->get_where($this->table,$criteria);
+    	return $query->result();
+    }
+
+    public function update($data,$criteria){
+        $this->db->update($this->table,$data,$criteria);
+    }
+
+	public function delete($criteria){
+		$this->db->delete($this->table,$criteria);
+	}
+	
+    public function __destruct() {
+		$this->db->close();
+   	}
+
+}
+        </pre>
+        <h3 id="layout">layout.php</h3>
+        <h5>tutorial/application/views/layout.php</h5>
+        <div>
+        <pre class="brush:php;html-script:true;">
+          &lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Codeigniter Tutorial&lt;/title&gt;
+  &lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"&gt;
+  &lt;style&gt;
+      .txt-not-found{
+        text-align: center;
+        color: #585858;
+      }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;nav class="navbar navbar-inverse"&gt;
+  &lt;div class="container"&gt;
+    &lt;div class="navbar-header"&gt;
+      &lt;button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"&gt;
+        &lt;span class="sr-only"&gt;Toggle navigation&lt;/span&gt;
+        &lt;span class="icon-bar"&gt;&lt;/span&gt;
+        &lt;span class="icon-bar"&gt;&lt;/span&gt;
+        &lt;span class="icon-bar"&gt;&lt;/span&gt;
+      &lt;/button&gt;
+      &lt;?php
+        echo anchor('customer','Codeigniter Tutorial',array('class'=&gt;'navbar-brand'));
+      ?&gt;
+    &lt;/div&gt;
+    &lt;div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"&gt;
+      &lt;ul class="nav navbar-nav navbar-right"&gt;
+       &lt;li&gt;
+          &lt;?php 
+            echo anchor('customer/create', 'Create Customer');
+          ?&gt;
+       &lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;&lt;!-- /.navbar-collapse --&gt;
+  &lt;/div&gt;&lt;!-- /.container-fluid --&gt;
+&lt;/nav&gt;
+&lt;div class="container"&gt;
+	 &lt;div class="row"&gt;
+		 &lt;div class="col-md-offset-3 col-md-6"&gt;
+       
+            &lt;!-- Content --&gt;
+    		 	  &lt;?php (isset($yeild) && !empty($yeild))? print $yeild:'';?&gt;      
+       &lt;/div&gt;
+	 &lt;/div&gt;
+ &lt;/div&gt;
+&lt;script src="http://code.jquery.com/jquery-2.2.1.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+
+        </pre>
+        
+        </div>
+        
+        <h3 id="view_customer">view_customer.php</h3>
+        <h5>tutorial/application/views/view_customer.php</h5>
+        <div>
+        <pre class="brush:php;html-script:true;">
+          &lt;div class="adv-table"&gt;
+      &lt;div class="space15"&gt;&lt;/div&gt;
+      &lt;table class="table table-striped table-hover table-bordered" id="editable-sample"&gt;
+          &lt;thead&gt;
+          &lt;tr&gt;
+              &lt;th&gt;No.&lt;/th&gt;
+              &lt;th&gt;Firstname&lt;/th&gt;
+              &lt;th&gt;Lastname&lt;/th&gt;
+              &lt;th&gt;Email&lt;/th&gt;
+              &lt;th&gt;Edit&lt;/th&gt;
+              &lt;th&gt;Delete&lt;/th&gt;
+          &lt;/tr&gt;
+          &lt;/thead&gt;
+          &lt;tbody&gt;
+          &lt;?php
+              if(!isset($list_data)|| empty($list_data)) { 
+                  echo "&lt;tr class='txt-not-found'&gt;&lt;td colspan=6&gt;Data Not Found&lt;/td&gt;&lt;/tr&gt;";
+              } else{
+                $i=1;
+                foreach ($list_data as $rows){
+                  echo "&lt;tr class=''&gt;";
+                  echo "&lt;td&gt;$i&lt;/td&gt;";
+                  echo "&lt;td&gt;$rows-&gt;firstname&lt;/td&gt;";
+                  echo "&lt;td&gt;$rows-&gt;lastname&lt;/td&gt;";
+                  echo "&lt;td&gt;$rows-&gt;email&lt;/td&gt;";
+                    echo "&lt;td&gt;";
+                    echo anchor("customer/edit/$rows-&gt;custId", 'Edit');
+                    echo "&lt;/td&gt;";
+                    echo "&lt;td&gt;";
+                    echo anchor("customer/delete/$rows-&gt;custId", 'Delete');
+                    echo "&lt;/td&gt;";
+                  echo "&lt;/tr&gt;";
+                  $i++;
+                }
+              }
+          ?&gt;
+          &lt;/tbody&gt;
+      &lt;/table&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+        </pre>
+        </div>
+        
+        <h3 id="create_customer">create_customer.php</h3>
+        <h5>tutorial/application/views/create_customer.php</h5>
+        <div>
+        <pre class="brush:php;html-script:true;">
+          	&lt;div class="panel panel-default"&gt;
+	  &lt;div class="panel-heading"&gt;Create Customer&lt;/div&gt;
+	  &lt;div class="panel-body"&gt;
+	    &lt;?php
+			$firstname = array('name'=&gt;'firstname','id'=&gt;'firstname','class'=&gt;'form-control'
+				,'required'=&gt;'');
+			$lastname= array('name'=&gt;'lastname','id'=&gt;'lastname','class'=&gt;'form-control','required'=&gt;'');
+			$email = array('type'=&gt;'email','name'=&gt;'email','id'=&gt;'email','class'=&gt;'form-control');
+	    	
+	    	if(isset($action) && $action == 'edit'){
+	    		$action = "customer/update/$editData-&gt;custId";
+	    		$firstname['value'] = set_value('firstname',$editData-&gt;firstname);
+	    		$lastname['value'] = set_value('lastname',$editData-&gt;lastname);
+	    		$email['value'] = set_value('email',$editData-&gt;email);
+	    		
+	    	}else{
+	    		$action = 'customer/save';
+	    	}
+
+	    	echo form_open($action,array('id'=&gt;'formCustomer','role'=&gt;'form'));
+			echo '&lt;div class="form-group"&gt;';
+			echo form_label('Firstname','firstname');
+			echo form_input($firstname);
+			echo '&lt;/div&gt;';
+			echo '&lt;div class="form-group"&gt;';
+			echo form_label('Lastname ','lastname');
+			echo form_input($lastname);
+			echo '&lt;/div&gt;';
+			echo '&lt;div class="form-group"&gt;';
+			echo form_label('Email ','email');
+			echo form_input($email);
+			echo '&lt;/div&gt;';
+			echo form_button(array('type'=&gt;'submit','class'=&gt;'btn btn-info','content'=&gt;'Save'));
+			echo form_button(array('type'=&gt;'reset','class'=&gt;'btn btn-info','content'=&gt;'Cancel'));
+			echo form_close();
+
+		
+	?&gt;
+	  &lt;/div&gt;
+	&lt;/div&gt;
+
+        </pre>
+        </div>
+        
+        </div>
+                  </div>
+              </div>
+            </div>
+       </div>
+   </div>
+   
+ </div>
+<script src="http://code.jquery.com/jquery-2.2.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+ <link href="../styles/shCore.css" rel="stylesheet" type="text/css">
+  <link href="../styles/shThemeDefault.css" rel="stylesheet" type="text/css">
+  <script src="../scripts/shCore.js" type="text/javascript"></script>
+  <script src="../scripts/shAutoloader.js" type="text/javascript"></script>
+  <script src="../scripts/shBrushXml.js" type="text/javascript"></script>
+  <script src="../scripts/shBrushJScript.js" type="text/javascript"></script>
+  <script src="../scripts/shBrushCss.js" type="text/javascript"></script>
+  <script src="../scripts/shBrushPhp.js" type="text/javascript"></script>
+  <script src="../scripts/shBrushSql.js" type="text/javascript"></script>
+  
+	<script type="text/javascript">
+	  SyntaxHighlighter.all();
+	  function goToByScroll(id){
+          // Remove "link" from the ID
+        id = id.replace("link", "");
+          // Scroll
+        $('html,body').animate({
+            scrollTop: $("#"+id).offset().top},
+            'slow');
+    }
+
+	 </script>
+
+</body>
+</html>
